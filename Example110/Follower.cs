@@ -45,15 +45,10 @@ namespace Movement
 		private void Follow(float deltaTime)
 		{
 			Vector2 mouse = Raylib.GetMousePosition();
-			// Console.WriteLine(mouse);
-			Vector2 dir = mouse - Position;
-			dir = Vector2.Normalize(dir);
-			dir *= 1000.0f;
-
-			Acceleration += dir;
-
-			// TODO implement
-			// Position += Velocity * deltaTime;
+			Vector2 direction = mouse - Position;
+			direction = Vector2.Normalize(direction);
+			direction *= 1000.0f;
+			Acceleration += direction;
 		}
 
 
