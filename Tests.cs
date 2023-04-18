@@ -39,8 +39,8 @@ namespace Movement
 
 			// limit
 			float max = 2;
-			Vector2 limited;
-			if (magnitude < 1.0) {
+			Vector2 limited = new Vector2();
+			if (magnitude > max) {
 				limited = velocity * max;
 			} else {
 				limited = normalized * max;

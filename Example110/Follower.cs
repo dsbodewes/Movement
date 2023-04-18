@@ -21,7 +21,7 @@ Methods:
 
 namespace Movement
 {
-	class Follower : SpriteNode
+	class Follower : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
 
@@ -38,6 +38,7 @@ namespace Movement
 		{
 			Follow(deltaTime);
 			BounceEdges();
+			Move(deltaTime);
 		}
 
 		// your own private methods
@@ -45,26 +46,16 @@ namespace Movement
 		{
 			Vector2 mouse = Raylib.GetMousePosition();
 			// Console.WriteLine(mouse);
-			
-			Position = mouse; // incorrect!!
+			Vector2 dir = mouse - Position;
+			dir = Vector2.Normalize(dir);
+			dir *= 1000.0f;
+
+			Acceleration += dir;
 
 			// TODO implement
 			// Position += Velocity * deltaTime;
 		}
 
-		private void BounceEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
-		}
 
 	}
 }
