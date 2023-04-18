@@ -21,7 +21,7 @@ Methods:
 
 namespace Movement
 {
-	class Pointer : SpriteNode
+	class Pointer : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
 
@@ -30,7 +30,7 @@ namespace Movement
 		public Pointer() : base("resources/spaceship.png")
 		{
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 2);
-			Color = Color.YELLOW;
+			Color = Color.PINK;
 		}
 
 		// Update is called every frame
@@ -46,28 +46,16 @@ namespace Movement
 			// Or just implement it in Example 110 Follower
 
 			Vector2 mouse = Raylib.GetMousePosition();
+			Vector2 direction = mouse - Position; // correct!!
+
 			// Console.WriteLine(mouse);
 
-			Position = mouse; // incorrect!!
-
-			Rotation += deltaTime * Math.PI;  // incorrect!!
+			Acceleration = Vector2.Normalize(direction) * 1000f;
+			Rotation = Math.Atan2(Velocity.Y, Velocity.X);  // correct!!
 
 			// TODO implement
-			// Position += Velocity * deltaTime;
-		}
-
-		private void BounceEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
-
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
+			 Position += Velocity * deltaTime;
+			 Velocity += Acceleration * deltaTime;
 		}
 
 	}

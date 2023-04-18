@@ -30,7 +30,7 @@ namespace Movement
 		{
 			Velocity = new Vector2 (200,300);
 			Position = new Vector2(Settings.ScreenSize.X / 2, Settings.ScreenSize.Y / 4);
-			Color = Color.ORANGE;
+			Color = Color.BROWN;
 		}
 
 		// Update is called every frame
