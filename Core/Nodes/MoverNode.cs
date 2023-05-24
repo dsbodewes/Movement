@@ -108,13 +108,23 @@ namespace Movement
 				Position.X = 0;
 			}
 
+            if (Position.X < 0)
+			{
+				Position.X = scr_width;
+			}
+
 			if (Position.Y > scr_height)
 			{
 				Position.Y = 0;
 			}
 
-		}
+            if (Position.Y < 0)
+			{
+				Position.Y = scr_height;
+			}
 
-        
+		}  
     }
+
+    
 }

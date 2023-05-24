@@ -62,7 +62,13 @@ namespace Movement
 		{
 			// TODO implement
 			Color = Color.GREEN;
+
 			// use thrustForce somewhere here
+			float fromPolarX = (float)Math.Cos(Rotation) * thrustForce;
+			float fromPolarY = (float)Math.Sin(Rotation) * thrustForce;
+
+			AddForce(new Vector2(fromPolarX, fromPolarY));
+		
 		}
 
 		public void NoThrust()

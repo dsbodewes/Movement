@@ -22,7 +22,7 @@ Methods:
 
 namespace Movement
 {
-	class Particle : SpriteNode
+	class Particle : MoverNode
 	{
 		// your private fields here (add Velocity, Acceleration, and MaxSpeed)
 		
@@ -38,30 +38,22 @@ namespace Movement
 		// Update is called every frame
 		public override void Update(float deltaTime)
 		{
+			Gravity(deltaTime);
 			Move(deltaTime);
-			WrapEdges();
+			Rotation= (float)Math.Atan2(Velocity.Y, Velocity.X);
+			
+		}
+
+		public void Gravity(float deltaTime)
+		{
+			Vector2 gravity = new Vector2(0.0f, 980.0f);
+
+			AddForce(gravity);
 		}
 
 		// your own private methods
-		private void Move(float deltaTime)
-		{
-			// TODO implement
-			// Position += Velocity * deltaTime;
-		}
 
-		private void WrapEdges()
-		{
-			float scr_width = Settings.ScreenSize.X;
-			float scr_height = Settings.ScreenSize.Y;
-			float spr_width = TextureSize.X;
-			float spr_heigth = TextureSize.Y;
 
-			// TODO implement...
-			if (Position.X > scr_width)
-			{
-				// ...
-			}
-		}
 
 	}
 }
